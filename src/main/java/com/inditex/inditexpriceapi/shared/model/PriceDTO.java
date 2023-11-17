@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.domain.signatures;
+package com.inditex.inditexpriceapi.shared.model;
 
 
 import java.math.BigDecimal;

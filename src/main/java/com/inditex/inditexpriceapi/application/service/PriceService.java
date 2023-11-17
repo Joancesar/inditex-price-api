@@ -2,7 +2,7 @@ package com.inditex.inditexpriceapi.application.service;
 
 import com.inditex.inditexpriceapi.application.ports.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
-import com.inditex.inditexpriceapi.domain.signatures.PriceDTO;
+import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

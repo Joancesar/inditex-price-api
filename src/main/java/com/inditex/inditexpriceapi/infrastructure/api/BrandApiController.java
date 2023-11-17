@@ -1,7 +1,7 @@
 package com.inditex.inditexpriceapi.infrastructure.api;
 
 import com.inditex.inditexpriceapi.application.service.PriceService;
-import com.inditex.inditexpriceapi.domain.signatures.PriceDTO;
+import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import com.inditex.inditexpriceapi.infrastructure.config.ApiPathConstants;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
