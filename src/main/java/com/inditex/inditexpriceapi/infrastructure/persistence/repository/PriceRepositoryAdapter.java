@@ -17,7 +17,7 @@ public interface PriceRepositoryAdapter extends PriceRepositoryPort, JpaReposito
             "pr.start_date as startDate,  " +
             "pr.end_date as endDate,  " +
             "pr.price as applicablePrice  " +
-            "FROM PRICE_RANGES pr  " +
+            "FROM PRICES pr  " +
             "INNER JOIN PRODUCTS prod ON pr.product_id = prod.id  " +
             "INNER JOIN BRANDS br ON prod.brand_id = br.id  " +
             "WHERE pr.product_id = :productId  " +
