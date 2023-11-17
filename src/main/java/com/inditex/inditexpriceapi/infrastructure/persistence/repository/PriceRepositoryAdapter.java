@@ -25,5 +25,5 @@ public interface PriceRepositoryAdapter extends PriceRepositoryPort, JpaReposito
             "AND :appliedDate BETWEEN pr.start_date AND pr.end_date  " +
             "ORDER BY pr.priority DESC " +
             "LIMIT 1 ", nativeQuery = true)
-    Optional<PriceDTO> findApplicablePrice(LocalDateTime appliedDate, long productId, long brandId);
+    Optional<PriceDTO> findApplicablePrice(long productId, long brandId, LocalDateTime appliedDate);
 }

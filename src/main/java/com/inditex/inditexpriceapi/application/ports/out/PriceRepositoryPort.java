@@ -6,7 +6,5 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface PriceRepositoryPort {
-    Optional<PriceDTO> findApplicablePrice(LocalDateTime appliedDate,
-                                           long productId,
-                                           long brandId);
+    Optional<PriceDTO> findApplicablePrice(long productId, long brandId, LocalDateTime appliedDate);
 }
