@@ -3,8 +3,8 @@ package com.inditex.inditexpriceapi.infrastructure.config;
 import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
 import com.inditex.inditexpriceapi.shared.model.ErrorDTO;
 import com.inditex.inditexpriceapi.shared.model.enu.ErrorCode;
+import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.HttpMediaTypeException;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice

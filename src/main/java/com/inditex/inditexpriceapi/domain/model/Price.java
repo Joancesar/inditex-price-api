@@ -44,7 +44,7 @@ public class Price {
     private int priority = 0;
 
     @Column(name = "price", nullable = false)
-    private BigDecimal price;
+    private BigDecimal priceQuantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_id", referencedColumnName = "id")
