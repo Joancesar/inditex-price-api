@@ -11,9 +11,10 @@ import java.util.Optional;
 
 public interface PriceRepositoryAdapter extends PriceRepositoryPort, JpaRepository<Price, Long> {
     @Override
-    @Query(value = "SELECT br.id as brandId,  " +
+    @Query(value =
+            "SELECT br.id as brandId,  " +
             "prod.id as productId,  " +
-            "pr.id as priceRangeId,  " +
+            "pr.price_list as priceRangeId,  " +
             "pr.start_date as startDate,  " +
             "pr.end_date as endDate,  " +
             "pr.price as applicablePrice  " +

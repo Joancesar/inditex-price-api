@@ -1,6 +1,7 @@
 package com.inditex.inditexpriceapi.infrastructure.api;
 
 import com.inditex.inditexpriceapi.application.service.PriceService;
+import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
 import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import com.inditex.inditexpriceapi.infrastructure.config.ApiPathConstants;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,6 +29,10 @@ public class BrandApiController {
                                              @PathVariable long brandId,
                                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
                                              LocalDateTime date) {
-        return ResponseEntity.ok(priceService.getApplicablePrice(productId, brandId, date));
+        return ResponseEntity.ok(priceService.getApplicablePrice(productId, brandId, date)
+                .orElseThrow(() -> new PriceNotFoundException(
+                        String.format("Price not found for product id %d, brand id %d, with applicable date %s",
+                                productId, brandId, date.toString()))
+                ));
     }
 }

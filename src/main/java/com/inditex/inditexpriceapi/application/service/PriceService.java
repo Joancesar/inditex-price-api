@@ -1,11 +1,11 @@
 package com.inditex.inditexpriceapi.application.service;
 
 import com.inditex.inditexpriceapi.application.ports.PriceRepositoryPort;
-import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
 import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class PriceService {
@@ -16,11 +16,7 @@ public class PriceService {
         this.priceRepositoryPort = priceRepositoryPort;
     }
 
-    public PriceDTO getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate) {
-        return priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate)
-                .orElseThrow(() -> new PriceNotFoundException(
-                    String.format("Price not found for product id %d, brand id %d, with applicable date %s",
-                            productId, brandId, appliedDate.toString()))
-                );
+    public Optional<PriceDTO> getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate) {
+        return priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate);
     }
 }
