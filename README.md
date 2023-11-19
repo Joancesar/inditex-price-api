@@ -54,7 +54,3 @@ El proyecto está: _completed_
 - Añadir monitoring
 - Reactivo
 
-
-## Contact
-Creado por [@joancesar](https://www.joancesar.com/) - ¡no dudes en contactarme!
-
