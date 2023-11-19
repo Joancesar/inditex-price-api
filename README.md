@@ -20,6 +20,7 @@
 - Spring Boot - versión 3.1.5
 - Caffeine Cache - versión 3.1.8
 - JUnit - versión 5.9.3
+- Flyway - versión 9.16.3
 
 ## Features
 Listo para usar características:
@@ -51,6 +52,7 @@ El proyecto está: _completed_
 - Expansión de la API para manejar más tipos de consultas relacionadas con precios.
 - Load Balancing.
 - Añadir monitoring
+- Reactivo
 
 Pendiente:
 - Implementación de seguridad y autenticación de API.
