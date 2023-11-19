@@ -54,9 +54,6 @@ El proyecto está: _completed_
 - Añadir monitoring
 - Reactivo
 
-Pendiente:
-- Implementación de seguridad y autenticación de API.
-
 
 ## Contact
 Creado por [@joancesar](https://www.joancesar.com/) - ¡no dudes en contactarme!
