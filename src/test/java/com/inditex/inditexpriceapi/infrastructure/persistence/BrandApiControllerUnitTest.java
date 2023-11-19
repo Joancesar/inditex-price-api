@@ -60,7 +60,7 @@ class BrandApiControllerUnitTest {
 
     @Test
     void whenValidRequestThenReturnsPriceDTO() throws Exception {
-        Optional<PriceDTO> mockPriceDTO = Optional.of(createMockPriceDTO());
+        PriceDTO mockPriceDTO = createMockPriceDTO();
         when(priceService.getApplicablePrice(anyLong(), anyLong(), any())).thenReturn(mockPriceDTO);
 
         mockMvc.perform(get("/v1/brands/1/products/35455/prices")
@@ -74,7 +74,7 @@ class BrandApiControllerUnitTest {
 
     @Test
     void whenPriceNotFoundThenReturnsNotFound() throws Exception {
-        when(priceService.getApplicablePrice(anyLong(), anyLong(), any())).thenReturn(Optional.empty());
+        when(priceService.getApplicablePrice(anyLong(), anyLong(), any())).thenReturn(null);
 
         mockMvc.perform(get("/v1/brands/1/products/35455/prices")
                         .param("date", "2020-06-14 10:00:00")

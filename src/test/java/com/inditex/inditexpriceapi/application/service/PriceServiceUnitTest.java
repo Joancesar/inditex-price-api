@@ -37,13 +37,12 @@ class PriceServiceUnitTest {
         PriceDTO priceDTO = mock(PriceDTO.class);
 
         when(priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate))
-                .thenReturn(Optional.of(priceDTO));
+                .thenReturn(priceDTO);
 
-        Optional<PriceDTO> result = priceService.getApplicablePrice(productId, brandId, appliedDate);
+        PriceDTO result = priceService.getApplicablePrice(productId, brandId, appliedDate);
 
         verify(priceRepositoryPort).findApplicablePrice(productId, brandId, appliedDate);
         assertNotNull(result);
-        assertTrue(result.isPresent());
-        assertEquals(priceDTO, result.get());
+        assertEquals(priceDTO, result);
     }
 }

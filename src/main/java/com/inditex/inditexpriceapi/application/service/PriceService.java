@@ -20,7 +20,7 @@ public class PriceService {
     }
 
     @Cacheable(PRICES_CACHE)
-    public Optional<PriceDTO> getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate) {
+    public PriceDTO getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate) {
         return priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate);
     }
 }

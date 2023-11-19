@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
@@ -29,12 +30,11 @@ class PriceRepositoryAdapterIT {
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.parse("2020-06-14 10:00:00", formatter);
 
-        Optional<PriceDTO> result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
+        PriceDTO result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
 
-        assertTrue(result.isPresent());
-        assertEquals(brandId, result.get().getBrandId());
-        assertEquals(productId, result.get().getProductId());
-        assertEquals(new BigDecimal("35.50"), result.get().getApplicablePrice());
+        assertEquals(brandId, result.getBrandId());
+        assertEquals(productId, result.getProductId());
+        assertEquals(new BigDecimal("35.50"), result.getApplicablePrice());
     }
 
     @Test
@@ -43,9 +43,9 @@ class PriceRepositoryAdapterIT {
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.parse("2021-01-01 10:00:00", formatter);
 
-        Optional<PriceDTO> result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
+        PriceDTO result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
 
-        assertFalse(result.isPresent());
+        assertNull(result);
     }
 }
 

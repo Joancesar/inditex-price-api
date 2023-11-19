@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(ApiPathConstants.V1 + ApiPathConstants.BRANDS_ROUTE)
@@ -29,7 +30,7 @@ public class BrandApiController {
                                              @PathVariable long brandId,
                                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
                                              LocalDateTime date) {
-        return ResponseEntity.ok(priceService.getApplicablePrice(productId, brandId, date)
+        return ResponseEntity.ok(Optional.ofNullable(priceService.getApplicablePrice(productId, brandId, date))
                 .orElseThrow(() -> new PriceNotFoundException(
                         String.format("Price not found for product id %d, brand id %d, with applicable date %s",
                                 productId, brandId, date.toString()))
