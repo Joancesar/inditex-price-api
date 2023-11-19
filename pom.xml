@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.inditex</groupId>
     <artifactId>inditex-price-api</artifactId>
@@ -18,6 +18,7 @@
         <spring-boot.version>3.1.5</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
         <h2.version>2.1.214</h2.version>
+        <caffeine.version>3.1.8</caffeine.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,6 +53,16 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
         </dependency>
     </dependencies>
 

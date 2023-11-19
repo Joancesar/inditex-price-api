@@ -2,10 +2,13 @@ package com.inditex.inditexpriceapi.application.service;
 
 import com.inditex.inditexpriceapi.application.ports.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.shared.model.PriceDTO;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import static com.inditex.inditexpriceapi.infrastructure.config.CacheConstants.PRICES_CACHE;
 
 @Service
 public class PriceService {
@@ -16,6 +19,7 @@ public class PriceService {
         this.priceRepositoryPort = priceRepositoryPort;
     }
 
+    @Cacheable(PRICES_CACHE)
     public Optional<PriceDTO> getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate) {
         return priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate);
     }
