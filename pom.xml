@@ -101,12 +101,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <excludes>
-                        <exclude>**/domain/*</exclude>
-                        <exclude>**/config/*</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
