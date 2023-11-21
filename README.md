@@ -53,27 +53,38 @@ Esta capa es el corazón de la aplicación, donde reside la lógica de negocio.
 Define los modelos de dominio (como Brand, Currency, Price, y Product) 
 que representan las entidades con las que opera la aplicación. 
 
-Interacciones:
-Con Application: La capa de dominio es utilizada por la capa de aplicación para llevar a cabo operaciones. 
-Los servicios de la capa de aplicación invocarán métodos del dominio para ejecutar lógica de negocio cuando se procesan las solicitudes.
-Con Infrastructure: La capa de dominio no debería depender de la infraestructura. En su lugar, la infraestructura dependerá de los modelos de dominio para realizar tareas como la persistencia de datos.
-
 #### Application
-La capa de aplicación actúa como mediadora entre la infraestructura (y las interfaces de usuario) y el dominio. Contiene los 'puertos', que son interfaces que definen operaciones de alto nivel que se pueden realizar. 
+La capa de aplicación actúa como mediadora entre la infraestructura y el dominio. 
+Contiene los 'puertos', que son interfaces que definen operaciones de alto nivel que se pueden realizar. 
 Estos puertos serán implementados por los adaptadores en la capa de infraestructura.
-Interacciones:
-Con Domain: La capa de aplicación utiliza las entidades y la lógica de negocio definida en la capa de dominio para realizar operaciones. Por ejemplo, para obtener un precio aplicable, 
-la capa de aplicación ejecutará la lógica de dominio que determina cuál es el precio correcto en función de las reglas de negocio.
-Con Infrastructure: Los servicios de la capa de aplicación dependen de los adaptadores definidos en la infraestructura para acceder y manipular datos externos. Por ejemplo, para guardar o recuperar información de la base de datos.
 
 #### Infrastructure
 En esta capa se encuentran todos los adaptadores necesarios para conectar la aplicación con el mundo exterior. 
 Esto incluye la implementación de la persistencia de datos (como PriceRepositoryAdapter), la comunicación con otras APIs, y la configuración necesaria para que la aplicación se ejecute en un entorno de producción.
 
-Interacciones:
-Con Application: Los adaptadores en la infraestructura implementan los puertos definidos en la capa de aplicación. Por ejemplo, PriceRepositoryAdapter implementará PriceRepositoryPort para proporcionar los detalles de cómo se recuperan los datos de la base de datos.
-Con Domain: Los adaptadores utilizarán las entidades de dominio para leer o escribir en la base de datos y realizar cualquier otra operación que requiera interacción con los modelos de dominio.
+## Organizacion de clases en las capas
+##### Capa de Aplicación:
 
+PriceService: Este servicio utiliza PriceRepositoryPort para obtener precios aplicables. 
+La presencia de un puerto en la capa de aplicación y su uso en el servicio es un indicativo de que la arquitectura hexagonal se está siguiendo.
+
+##### Puertos:
+
+PriceRepositoryPort.java: Define una interfaz para la obtención de precios aplicables. 
+Este puerto actúa como un contrato entre la capa de aplicación y la capa de infraestructura, lo cual es un componente esencial en la arquitectura hexagonal.
+
+##### Capa de Infraestructura (Adaptadores):
+
+PriceRepositoryAdapter: Implementa PriceRepositoryPort y extiende JpaRepository, proporcionando la implementación de la persistencia de datos. 
+Este es un ejemplo de un adaptador de infraestructura, conectando la lógica de negocio con la base de datos. 
+
+BrandApiController: Controlador que maneja las solicitudes HTTP y utiliza PriceService. 
+Representa un adaptador de entrada en la arquitectura hexagonal, conectando la aplicación con el mundo exterior.
+
+##### Modelo de Dominio:
+
+Price: Define la entidad Price con sus atributos y relaciones. 
+Este modelo es parte de la capa de dominio y debe contener solo lógica de negocio relevante.
 
 ### Decisiones de Diseño y Herramientas Utilizadas:
 ControllerAdvice:
@@ -94,6 +105,4 @@ La decisión de utilizar Jacoco fue para garantizar que se mantenga un alto est�
 - Pruebas de rendimiento ej: Gatling
 
 ## Screenshots
-<!---
 ![img.png](img.png)
--->

@@ -6,7 +6,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static com.inditex.inditexpriceapi.infrastructure.config.CacheConstants.PRICES_CACHE;
 
