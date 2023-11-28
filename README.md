@@ -48,11 +48,11 @@ curl -X GET 'http://localhost:8080/v1/brands/1/products/35455/prices?date=2022-1
 El proyecto está: _completed_
 
 ## Arquitecture
-##### Capa de Aplicación:
+#### Capa de Aplicación:
 PriceService (PriceService.java): Este servicio implementa PriceServicePort y utiliza PriceRepositoryPort para obtener precios aplicables.
 Al depender de abstracciones (puertos), en lugar de implementaciones concretas, se sigue el Principio de Inversión de Dependencias.
 
-Puertos:
+##### Puertos:
 
 PriceServicePort (PriceServicePort.java): es una interfaz clave en la capa de aplicación que define las operaciones relacionadas con el servicio de precios.
 Como un "puerto de entrada" (in-port), establece un punto de interacción claro y bien definido para las operaciones externas que desean acceder a la lógica de negocio central.
@@ -60,7 +60,7 @@ Como un "puerto de entrada" (in-port), establece un punto de interacción claro 
 PriceRepositoryPort (PriceRepositoryPort.java): actúa como un "puerto de salida" (out-port) en la arquitectura hexagonal, definiendo una interfaz para la obtención de precios aplicables.
 Este puerto establece un contrato entre la capa de aplicación y el dominio, permitiendo que la capa de aplicación interactúe con el dominio (y, por extensión, con la infraestructura de datos) de una manera desacoplada y abstracta.
 
-##### Capa de Infraestructura (Adaptadores):
+#### Capa de Infraestructura (Adaptadores):
 PriceRepositoryAdapter (PriceRepositoryAdapter.java): Implementa PriceRepositoryPort y extiende JpaRepository,
 proporcionando la implementación concreta para la persistencia de datos. 
 Este adaptador conecta la lógica de negocio con la base de datos.
@@ -68,7 +68,7 @@ Este adaptador conecta la lógica de negocio con la base de datos.
 BrandApiController (BrandApiController.java): Este controlador maneja las solicitudes HTTP y utiliza PriceService. 
 Representa un adaptador de entrada, conectando la aplicación con el mundo exterior.
 
-##### Modelo de Dominio:
+#### Modelo de Dominio:
 Price (Price.java): Define la entidad Price con sus atributos y relaciones. 
 Este modelo es parte de la capa de dominio y contiene lógica de negocio relevante,
 manteniéndose desacoplado de detalles como la interfaz de usuario o la infraestructura de datos.
