@@ -1,7 +1,6 @@
 package com.inditex.inditexpriceapi.application.service;
 
-import com.inditex.inditexpriceapi.application.ports.PriceRepositoryPort;
-import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
+import com.inditex.inditexpriceapi.application.ports.out.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,9 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

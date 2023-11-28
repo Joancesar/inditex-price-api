@@ -1,9 +1,9 @@
 package com.inditex.inditexpriceapi.infrastructure.api;
 
-import com.inditex.inditexpriceapi.application.service.PriceService;
+import com.inditex.inditexpriceapi.application.ports.in.PriceServicePort;
 import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
-import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import com.inditex.inditexpriceapi.infrastructure.config.ApiPathConstants;
+import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,9 @@ import java.util.Optional;
 @RequestMapping(ApiPathConstants.V1 + ApiPathConstants.BRANDS_ROUTE)
 public class BrandApiController {
 
-    private final PriceService priceService;
+    private final PriceServicePort priceService;
 
-    public BrandApiController(PriceService priceService) {
+    public BrandApiController(PriceServicePort priceService) {
         this.priceService = priceService;
     }
 

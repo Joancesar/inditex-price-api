@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.application.ports;
+package com.inditex.inditexpriceapi.application.ports.out;
 
 import com.inditex.inditexpriceapi.shared.model.PriceDTO;
 
