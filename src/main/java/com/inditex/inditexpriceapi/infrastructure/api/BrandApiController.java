@@ -1,9 +1,9 @@
 package com.inditex.inditexpriceapi.infrastructure.api;
 
 import com.inditex.inditexpriceapi.application.ports.in.PriceServicePort;
-import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
+import com.inditex.inditexpriceapi.infrastructure.exception.PriceNotFoundException;
 import com.inditex.inditexpriceapi.infrastructure.config.ApiPathConstants;
-import com.inditex.inditexpriceapi.shared.model.PriceDTO;
+import com.inditex.inditexpriceapi.application.model.PriceDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

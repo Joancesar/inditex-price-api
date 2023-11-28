@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.application.ports.in;
 
-import com.inditex.inditexpriceapi.shared.model.PriceDTO;
+import com.inditex.inditexpriceapi.application.model.PriceDTO;
 
 import java.time.LocalDateTime;
 

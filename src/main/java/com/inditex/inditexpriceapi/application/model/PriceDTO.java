@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.shared.model;
+package com.inditex.inditexpriceapi.application.model;
 
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.shared.model.enu;
+package com.inditex.inditexpriceapi.application.model.enu;
 
 import lombok.AccessLevel;
 import lombok.Getter;

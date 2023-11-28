@@ -48,43 +48,30 @@ curl -X GET 'http://localhost:8080/v1/brands/1/products/35455/prices?date=2022-1
 El proyecto está: _completed_
 
 ## Arquitecture
-#### Domain
-Esta capa es el corazón de la aplicación, donde reside la lógica de negocio. 
-Define los modelos de dominio (como Brand, Currency, Price, y Product) 
-que representan las entidades con las que opera la aplicación. 
-
-#### Application
-La capa de aplicación actúa como mediadora entre la infraestructura y el dominio. 
-Contiene los 'puertos', que son interfaces que definen operaciones de alto nivel que se pueden realizar. 
-Estos puertos serán implementados por los adaptadores en la capa de infraestructura.
-
-#### Infrastructure
-En esta capa se encuentran todos los adaptadores necesarios para conectar la aplicación con el mundo exterior. 
-Esto incluye la implementación de la persistencia de datos (como PriceRepositoryAdapter), la comunicación con otras APIs, y la configuración necesaria para que la aplicación se ejecute en un entorno de producción.
-
-## Organizacion de clases en las capas
 ##### Capa de Aplicación:
+PriceService (PriceService.java): Este servicio implementa PriceServicePort y utiliza PriceRepositoryPort para obtener precios aplicables.
+Al depender de abstracciones (puertos), en lugar de implementaciones concretas, se sigue el Principio de Inversión de Dependencias.
 
-PriceService: Este servicio utiliza PriceRepositoryPort para obtener precios aplicables. 
-La presencia de un puerto en la capa de aplicación y su uso en el servicio es un indicativo de que la arquitectura hexagonal se está siguiendo.
+Puertos:
 
-##### Puertos:
+PriceServicePort (PriceServicePort.java): es una interfaz clave en la capa de aplicación que define las operaciones relacionadas con el servicio de precios.
+Como un "puerto de entrada" (in-port), establece un punto de interacción claro y bien definido para las operaciones externas que desean acceder a la lógica de negocio central.
 
-PriceRepositoryPort.java: Define una interfaz para la obtención de precios aplicables. 
-Este puerto actúa como un contrato entre la capa de aplicación y la capa de infraestructura, lo cual es un componente esencial en la arquitectura hexagonal.
+PriceRepositoryPort (PriceRepositoryPort.java): actúa como un "puerto de salida" (out-port) en la arquitectura hexagonal, definiendo una interfaz para la obtención de precios aplicables.
+Este puerto establece un contrato entre la capa de aplicación y el dominio, permitiendo que la capa de aplicación interactúe con el dominio (y, por extensión, con la infraestructura de datos) de una manera desacoplada y abstracta.
 
 ##### Capa de Infraestructura (Adaptadores):
+PriceRepositoryAdapter (PriceRepositoryAdapter.java): Implementa PriceRepositoryPort y extiende JpaRepository,
+proporcionando la implementación concreta para la persistencia de datos. 
+Este adaptador conecta la lógica de negocio con la base de datos.
 
-PriceRepositoryAdapter: Implementa PriceRepositoryPort y extiende JpaRepository, proporcionando la implementación de la persistencia de datos. 
-Este es un ejemplo de un adaptador de infraestructura, conectando la lógica de negocio con la base de datos. 
-
-BrandApiController: Controlador que maneja las solicitudes HTTP y utiliza PriceService. 
-Representa un adaptador de entrada en la arquitectura hexagonal, conectando la aplicación con el mundo exterior.
+BrandApiController (BrandApiController.java): Este controlador maneja las solicitudes HTTP y utiliza PriceService. 
+Representa un adaptador de entrada, conectando la aplicación con el mundo exterior.
 
 ##### Modelo de Dominio:
-
-Price: Define la entidad Price con sus atributos y relaciones. 
-Este modelo es parte de la capa de dominio y debe contener solo lógica de negocio relevante.
+Price (Price.java): Define la entidad Price con sus atributos y relaciones. 
+Este modelo es parte de la capa de dominio y contiene lógica de negocio relevante,
+manteniéndose desacoplado de detalles como la interfaz de usuario o la infraestructura de datos.
 
 ### Decisiones de Diseño y Herramientas Utilizadas:
 ControllerAdvice:

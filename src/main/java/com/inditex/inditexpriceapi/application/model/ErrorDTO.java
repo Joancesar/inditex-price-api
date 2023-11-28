@@ -1,6 +1,6 @@
-package com.inditex.inditexpriceapi.shared.model;
+package com.inditex.inditexpriceapi.application.model;
 
-import com.inditex.inditexpriceapi.shared.model.enu.ErrorCode;
+import com.inditex.inditexpriceapi.application.model.enu.ErrorCode;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;

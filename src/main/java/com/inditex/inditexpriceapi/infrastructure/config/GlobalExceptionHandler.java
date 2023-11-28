@@ -1,8 +1,8 @@
 package com.inditex.inditexpriceapi.infrastructure.config;
 
-import com.inditex.inditexpriceapi.domain.exception.PriceNotFoundException;
-import com.inditex.inditexpriceapi.shared.model.ErrorDTO;
-import com.inditex.inditexpriceapi.shared.model.enu.ErrorCode;
+import com.inditex.inditexpriceapi.infrastructure.exception.PriceNotFoundException;
+import com.inditex.inditexpriceapi.application.model.ErrorDTO;
+import com.inditex.inditexpriceapi.application.model.enu.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
 import org.springframework.http.ResponseEntity;

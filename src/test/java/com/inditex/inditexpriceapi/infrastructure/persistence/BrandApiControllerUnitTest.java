@@ -3,7 +3,7 @@ package com.inditex.inditexpriceapi.infrastructure.persistence;
 import com.inditex.inditexpriceapi.application.service.PriceService;
 import com.inditex.inditexpriceapi.infrastructure.api.BrandApiController;
 import com.inditex.inditexpriceapi.infrastructure.config.GlobalExceptionHandler;
-import com.inditex.inditexpriceapi.shared.model.PriceDTO;
+import com.inditex.inditexpriceapi.application.model.PriceDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
