@@ -64,6 +64,16 @@
             <artifactId>caffeine</artifactId>
             <version>${caffeine.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -99,6 +109,30 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/swagger/inditex-price-api.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.inditexpriceapi.infrastructure.api</apiPackage>
+                            <modelPackage>com.inditexpriceapi.application.model</modelPackage>
+                            <configOptions>
+                                <useTags>true</useTags>
+                                <useJakartaEe>true</useJakartaEe>
+                                <dateLibrary>java8</dateLibrary>
+                                <useSpringBoot3>true</useSpringBoot3>
+                            </configOptions>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
