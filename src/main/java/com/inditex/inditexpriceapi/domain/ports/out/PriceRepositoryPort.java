@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.application.ports.out;
+package com.inditex.inditexpriceapi.domain.ports.out;
 
 import com.inditex.inditexpriceapi.application.model.PriceDTO;
 

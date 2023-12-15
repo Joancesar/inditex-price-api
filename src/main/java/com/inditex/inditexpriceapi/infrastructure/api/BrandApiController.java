@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.infrastructure.api;
 
-import com.inditex.inditexpriceapi.application.ports.in.PriceServicePort;
+import com.inditex.inditexpriceapi.domain.ports.in.PriceServicePort;
 import com.inditex.inditexpriceapi.infrastructure.exception.PriceNotFoundException;
 import com.inditex.inditexpriceapi.infrastructure.config.ApiPathConstants;
 import com.inditex.inditexpriceapi.application.model.PriceDTO;

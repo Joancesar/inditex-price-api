@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.domain.model;
+package com.inditex.inditexpriceapi.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,23 +12,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "BRANDS")
-public class Brand {
-
+@Table(name = "CURRENCIES")
+public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Version
-    private Long version;
+    private Long version = 0L;
 
-    @Column(name = "name", length = 150, nullable = false)
-    private String name;
+    @Column(name = "iso_code", length = 3, nullable = false, unique = true)
+    private String isoCode;
+
 }

@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.domain.model;
+package com.inditex.inditexpriceapi.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

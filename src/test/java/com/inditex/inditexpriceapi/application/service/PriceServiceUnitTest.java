@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.application.service;
 
-import com.inditex.inditexpriceapi.application.ports.out.PriceRepositoryPort;
+import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.application.model.PriceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

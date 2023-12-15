@@ -1,7 +1,7 @@
 package com.inditex.inditexpriceapi.application.service;
 
-import com.inditex.inditexpriceapi.application.ports.in.PriceServicePort;
-import com.inditex.inditexpriceapi.application.ports.out.PriceRepositoryPort;
+import com.inditex.inditexpriceapi.domain.ports.in.PriceServicePort;
+import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.application.model.PriceDTO;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
