@@ -1,9 +1,9 @@
 package com.inditex.inditexpriceapi.application.model;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-public interface PriceDTO {
+
+public interface ApplicablePrice {
     Long getBrandId();
     Long getProductId();
     Long getPriceRangeId();

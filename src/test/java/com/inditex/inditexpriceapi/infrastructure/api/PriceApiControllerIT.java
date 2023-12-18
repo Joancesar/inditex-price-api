@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class BrandApiControllerIT {
+class PriceApiControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -143,8 +143,7 @@ class BrandApiControllerIT {
         long brandId = 99L;
         String appliedDate = "2020-06-14 10:00:00";
         mockMvc.perform(get("/v1/brands/" + brandId + "/products/" + productId + "/prices")
-                        .param("date", appliedDate)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .param("date", appliedDate))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.errorCode").value("RESOURCE_NOT_FOUND"))
@@ -155,7 +154,7 @@ class BrandApiControllerIT {
     void whenGetPriceWithInvalidDateFormatThenReturnsUnprocessable() throws Exception {
         long productId = 35455L;
         long brandId = 1L;
-        String appliedDate = "2020-06-14";
+        String appliedDate = "fakeString";
         mockMvc.perform(get("/v1/brands/" + brandId + "/products/" + productId + "/prices")
                         .param("date", appliedDate)
                         .contentType(MediaType.APPLICATION_JSON))

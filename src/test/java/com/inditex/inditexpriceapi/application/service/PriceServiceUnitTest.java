@@ -1,7 +1,9 @@
 package com.inditex.inditexpriceapi.application.service;
 
+import com.inditex.inditexpriceapi.application.mapper.PriceMapper;
+import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
 import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
-import com.inditex.inditexpriceapi.application.model.PriceDTO;
+import com.inditexpriceapi.application.model.PriceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,8 +14,6 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -22,6 +22,8 @@ import static org.mockito.Mockito.when;
 class PriceServiceUnitTest {
     @Mock
     private PriceRepositoryPort priceRepositoryPort;
+    @Mock
+    private PriceMapper priceMapper;
 
     @InjectMocks
     private PriceService priceService;
@@ -31,15 +33,17 @@ class PriceServiceUnitTest {
         long productId = 1L;
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.now();
-        PriceDTO priceDTO = mock(PriceDTO.class);
+        ApplicablePrice applicablePrice = mock(ApplicablePrice.class);
+        PriceDTO priceDto = mock(PriceDTO.class);
 
-        when(priceRepositoryPort.findApplicablePrice(productId, brandId, appliedDate))
-                .thenReturn(priceDTO);
+        when(priceRepositoryPort.findApplicablePrice(brandId, productId, appliedDate))
+                .thenReturn(applicablePrice);
+        when(priceMapper.toDto(applicablePrice)).thenReturn(priceDto);
 
-        PriceDTO result = priceService.getApplicablePrice(productId, brandId, appliedDate);
+        PriceDTO result = priceService.getApplicablePrice(brandId, productId, appliedDate);
 
-        verify(priceRepositoryPort).findApplicablePrice(productId, brandId, appliedDate);
+        verify(priceRepositoryPort).findApplicablePrice(brandId, productId, appliedDate);
         assertNotNull(result);
-        assertEquals(priceDTO, result);
+        assertEquals(priceDto, result);
     }
 }

@@ -1,10 +1,12 @@
 package com.inditex.inditexpriceapi.infrastructure.config;
 
+import com.inditex.inditexpriceapi.infrastructure.exception.InvalidFormatException;
 import com.inditex.inditexpriceapi.infrastructure.exception.PriceNotFoundException;
-import com.inditex.inditexpriceapi.application.model.ErrorDTO;
-import com.inditex.inditexpriceapi.application.model.enu.ErrorCode;
+import com.inditexpriceapi.application.model.ErrorDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.HttpMediaTypeException;
@@ -20,7 +22,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PriceNotFoundException.class)
     public ResponseEntity<ErrorDTO> handlePriceNotFoundException(PriceNotFoundException ex, HttpServletRequest request) {
-        return buildErrorResponse(ex, request.getRequestURI(), ErrorCode.RESOURCE_NOT_FOUND);
+        return buildErrorResponse(ex, request.getRequestURI(), HttpStatus.NOT_FOUND,
+                ErrorDTO.ErrorCodeEnum.RESOURCE_NOT_FOUND);
     }
 
     @ExceptionHandler({MethodArgumentTypeMismatchException.class,
@@ -29,19 +32,29 @@ public class GlobalExceptionHandler {
             TypeMismatchException.class,
             HttpMessageConversionException.class,
             HttpRequestMethodNotSupportedException.class,
-            HttpMediaTypeException.class})
+            HttpMediaTypeException.class, InvalidFormatException.class})
     public ResponseEntity<ErrorDTO> handleUnprocessableRequestException(Exception ex, HttpServletRequest request) {
-        return buildErrorResponse(ex, request.getRequestURI(), ErrorCode.UNPROCESSABLE_REQUEST);
+        return buildErrorResponse(ex, request.getRequestURI(), HttpStatus.UNPROCESSABLE_ENTITY,
+                ErrorDTO.ErrorCodeEnum.UNPROCESSABLE_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDTO> handleGeneralException(Exception ex, HttpServletRequest request) {
-        return buildErrorResponse(ex, request.getRequestURI(), ErrorCode.INTERNAL_SERVER_ERROR);
+        return buildErrorResponse(ex, request.getRequestURI(), HttpStatus.INTERNAL_SERVER_ERROR,
+                ErrorDTO.ErrorCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
-    private ResponseEntity<ErrorDTO> buildErrorResponse(Exception ex, String path, ErrorCode errorCode) {
-        ErrorDTO errorDTO = new ErrorDTO(errorCode, ex.getMessage(), path);
-        return new ResponseEntity<>(errorDTO, errorCode.getHttpStatus());
+    private ResponseEntity<ErrorDTO> buildErrorResponse(Exception ex, String path, HttpStatus httpStatus,
+                                                        ErrorDTO.ErrorCodeEnum errorCode) {
+        ErrorDTO errorDTO = new ErrorDTO();
+        errorDTO.setErrorMessage(ex.getMessage());
+        errorDTO.setStatus(httpStatus.name());
+        errorDTO.setPath(path);
+        errorDTO.setErrorCode(errorCode);
+
+        return ResponseEntity.status(httpStatus)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(errorDTO);
     }
 
 }

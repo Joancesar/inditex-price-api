@@ -1,9 +1,9 @@
 package com.inditex.inditexpriceapi.infrastructure.persistence;
 
 import com.inditex.inditexpriceapi.application.service.PriceService;
-import com.inditex.inditexpriceapi.infrastructure.api.BrandApiController;
+import com.inditex.inditexpriceapi.infrastructure.api.PriceApiController;
 import com.inditex.inditexpriceapi.infrastructure.config.GlobalExceptionHandler;
-import com.inditex.inditexpriceapi.application.model.PriceDTO;
+import com.inditexpriceapi.application.model.PriceDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,19 +27,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-class BrandApiControllerUnitTest {
+class PriceApiControllerUnitTest {
 
     @Mock
     private PriceService priceService;
 
     @InjectMocks
-    private BrandApiController brandApiController;
+    private PriceApiController priceApiController;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(brandApiController)
+        mockMvc = MockMvcBuilders.standaloneSetup(priceApiController)
             .setControllerAdvice(new GlobalExceptionHandler())
             .defaultResponseCharacterEncoding(StandardCharsets.UTF_8)
             .alwaysDo(MockMvcResultHandlers.print())

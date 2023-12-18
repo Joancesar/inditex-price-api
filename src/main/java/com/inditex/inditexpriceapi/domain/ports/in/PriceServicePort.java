@@ -1,9 +1,9 @@
 package com.inditex.inditexpriceapi.domain.ports.in;
 
-import com.inditex.inditexpriceapi.application.model.PriceDTO;
+import com.inditexpriceapi.application.model.PriceDTO;
 
 import java.time.LocalDateTime;
 
 public interface PriceServicePort {
-    PriceDTO getApplicablePrice(Long productId, Long brandId, LocalDateTime appliedDate);
+    PriceDTO getApplicablePrice(Long brandId, Long productId, LocalDateTime appliedDate);
 }

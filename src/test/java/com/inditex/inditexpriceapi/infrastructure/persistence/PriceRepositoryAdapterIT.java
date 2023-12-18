@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.infrastructure.persistence;
 
-import com.inditex.inditexpriceapi.application.model.PriceDTO;
+import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,7 +19,7 @@ class PriceRepositoryAdapterIT {
 
     @Autowired
     private PriceRepositoryAdapter priceRepositoryAdapter;
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Test
     void whenFindApplicablePriceCalledWithExistingDataThenPriceIsReturned() {
@@ -27,7 +27,7 @@ class PriceRepositoryAdapterIT {
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.parse("2020-06-14 10:00:00", formatter);
 
-        PriceDTO result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
+        ApplicablePrice result = priceRepositoryAdapter.findApplicablePrice(brandId, productId, appliedDate);
 
         assertEquals(brandId, result.getBrandId());
         assertEquals(productId, result.getProductId());
@@ -40,7 +40,7 @@ class PriceRepositoryAdapterIT {
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.parse("2021-01-01 10:00:00", formatter);
 
-        PriceDTO result = priceRepositoryAdapter.findApplicablePrice(productId, brandId, appliedDate);
+        ApplicablePrice result = priceRepositoryAdapter.findApplicablePrice(brandId, productId, appliedDate);
 
         assertNull(result);
     }

@@ -1,12 +1,13 @@
 package com.inditex.inditexpriceapi.infrastructure.persistence;
 
+import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
 import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.infrastructure.entity.Price;
-import com.inditex.inditexpriceapi.application.model.PriceDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
+
 
 public interface PriceRepositoryAdapter extends PriceRepositoryPort, JpaRepository<Price, Long> {
     @Override
@@ -25,5 +26,5 @@ public interface PriceRepositoryAdapter extends PriceRepositoryPort, JpaReposito
             "AND :appliedDate BETWEEN pr.start_date AND pr.end_date  " +
             "ORDER BY pr.priority DESC " +
             "LIMIT 1 ", nativeQuery = true)
-    PriceDTO findApplicablePrice(long productId, long brandId, LocalDateTime appliedDate);
+    ApplicablePrice findApplicablePrice(long brandId, long productId, LocalDateTime appliedDate);
 }
