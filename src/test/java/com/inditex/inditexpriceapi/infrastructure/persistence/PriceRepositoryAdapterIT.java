@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.infrastructure.persistence;
 
-import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
+import com.inditex.inditexpriceapi.domain.model.ApplicablePrice;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

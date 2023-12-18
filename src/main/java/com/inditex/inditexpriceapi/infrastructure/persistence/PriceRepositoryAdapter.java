@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.infrastructure.persistence;
 
-import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
+import com.inditex.inditexpriceapi.domain.model.ApplicablePrice;
 import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
 import com.inditex.inditexpriceapi.infrastructure.entity.Price;
 import org.springframework.data.jpa.repository.JpaRepository;

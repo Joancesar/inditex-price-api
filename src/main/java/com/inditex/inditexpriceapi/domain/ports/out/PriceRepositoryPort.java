@@ -1,6 +1,6 @@
 package com.inditex.inditexpriceapi.domain.ports.out;
 
-import com.inditex.inditexpriceapi.application.model.ApplicablePrice;
+import com.inditex.inditexpriceapi.domain.model.ApplicablePrice;
 
 import java.time.LocalDateTime;
 
