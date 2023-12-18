@@ -19,6 +19,7 @@
         <lombok.version>1.18.24</lombok.version>
         <h2.version>2.1.214</h2.version>
         <caffeine.version>3.1.8</caffeine.version>
+        <package.name>com.inditex.inditexpriceapi.infrastructure.api</package.name>
     </properties>
     <dependencies>
         <dependency>
@@ -128,17 +129,25 @@
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/swagger/inditex-price-api.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.inditexpriceapi.infrastructure.api</apiPackage>
-                            <modelPackage>com.inditexpriceapi.application.model</modelPackage>
+                            <library>spring-boot</library>
+                            <addCompileSourceRoot>true</addCompileSourceRoot>
+                            <apiPackage>${package.name}.api</apiPackage>
+                            <modelPackage>${package.name}.model</modelPackage>
                             <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>                        <generateSupportingFiles>true</generateSupportingFiles>
-                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <documentationProvider>springdoc</documentationProvider>
-                                <interfaceOnly>true</interfaceOnly>
-                                <useTags>true</useTags>
                                 <useJakartaEe>true</useJakartaEe>
+                                <basePackage>${package.name}</basePackage>
+                                <configPackage>${package.name}.config</configPackage>
+                                <interfaceOnly>false</interfaceOnly>
                                 <dateLibrary>java8</dateLibrary>
-                                <useSpringBoot3>true</useSpringBoot3>
+                                <delegatePattern>true</delegatePattern>
+                                <useTags>true</useTags>
+                                <java8>true</java8>
                             </configOptions>
                             <typeMappings>
                                 <typeMapping>OffsetDateTime=java.time.LocalDateTime</typeMapping>

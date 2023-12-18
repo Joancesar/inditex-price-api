@@ -1,8 +1,8 @@
 package com.inditex.inditexpriceapi.infrastructure.config;
 
+import com.inditex.inditexpriceapi.infrastructure.api.model.ErrorDTO;
 import com.inditex.inditexpriceapi.infrastructure.exception.InvalidFormatException;
 import com.inditex.inditexpriceapi.infrastructure.exception.PriceNotFoundException;
-import com.inditexpriceapi.application.model.ErrorDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
 import org.springframework.http.HttpStatus;

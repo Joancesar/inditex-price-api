@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.infrastructure.entity;
+package com.inditex.inditexpriceapi.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "PRICES")
-public class Price {
+public class PriceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +48,11 @@ public class Price {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_id", referencedColumnName = "id")
-    private Currency currency;
+    private CurrencyEntity currencyEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    private ProductEntity productEntity;
 
     @Column(name = "price_list", nullable = false)
     private Long priceList;

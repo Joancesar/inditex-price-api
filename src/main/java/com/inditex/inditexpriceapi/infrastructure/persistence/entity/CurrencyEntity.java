@@ -1,4 +1,4 @@
-package com.inditex.inditexpriceapi.infrastructure.entity;
+package com.inditex.inditexpriceapi.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "CURRENCIES")
-public class Currency {
+public class CurrencyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

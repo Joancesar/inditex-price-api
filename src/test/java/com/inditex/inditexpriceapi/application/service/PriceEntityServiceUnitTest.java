@@ -1,9 +1,8 @@
 package com.inditex.inditexpriceapi.application.service;
 
-import com.inditex.inditexpriceapi.application.mapper.PriceMapper;
+import com.inditex.inditexpriceapi.infrastructure.api.mapper.PriceMapper;
 import com.inditex.inditexpriceapi.domain.model.ApplicablePrice;
 import com.inditex.inditexpriceapi.domain.ports.out.PriceRepositoryPort;
-import com.inditexpriceapi.application.model.PriceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PriceServiceUnitTest {
+class PriceEntityServiceUnitTest {
     @Mock
     private PriceRepositoryPort priceRepositoryPort;
     @Mock
@@ -33,17 +32,15 @@ class PriceServiceUnitTest {
         long productId = 1L;
         long brandId = 1L;
         LocalDateTime appliedDate = LocalDateTime.now();
-        ApplicablePrice applicablePrice = mock(ApplicablePrice.class);
-        PriceDTO priceDto = mock(PriceDTO.class);
+        ApplicablePrice expectedResponse = mock(ApplicablePrice.class);
 
         when(priceRepositoryPort.findApplicablePrice(brandId, productId, appliedDate))
-                .thenReturn(applicablePrice);
-        when(priceMapper.toDto(applicablePrice)).thenReturn(priceDto);
+                .thenReturn(expectedResponse);
 
-        PriceDTO result = priceService.getApplicablePrice(brandId, productId, appliedDate);
+        ApplicablePrice result = priceService.getApplicablePrice(brandId, productId, appliedDate);
 
         verify(priceRepositoryPort).findApplicablePrice(brandId, productId, appliedDate);
         assertNotNull(result);
-        assertEquals(priceDto, result);
+        assertEquals(expectedResponse, result);
     }
 }
